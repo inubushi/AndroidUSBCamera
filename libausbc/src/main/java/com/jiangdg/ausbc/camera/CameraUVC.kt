@@ -50,6 +50,11 @@ class CameraUVC(ctx: Context, device: UsbDevice) : MultiCameraClient.ICamera(ctx
         arrayListOf<PreviewSize>()
     }
 
+    // for frame access
+    private var frameWidth: Int = 0
+    private var frameHeight: Int = 0
+    private lateinit var frameData: kotlin.ByteArray
+
     private val frameCallBack = IFrameCallback { frame ->
         frame?.apply {
             frame.position(0)
